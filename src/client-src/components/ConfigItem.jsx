@@ -21,8 +21,9 @@ export default function ConfigItem({ title, template, group, config, setConfig }
             return (
                 <div className="checkbox-container my-auto">
                     <input checked={config[group][id].enabled} onChange={(e) => {
-                        config[group][id].enabled = e.target.checked;
-                        setConfig({...config});
+                        const newConfig = JSON.parse(JSON.stringify(config));
+                        newConfig[group][id].enabled = e.target.checked;
+                        setConfig(newConfig);
                     }} className="checkbox" id={id} type="checkbox" />
 
                     <div className="checkbox-visual outline-none border-none focus:ring-0">
@@ -40,8 +41,9 @@ export default function ConfigItem({ title, template, group, config, setConfig }
             return (
                 <div>
                     <select value={config[group][id].value} onChange={(e) => {
-                        config[group][id].value = e.target.value;
-                        setConfig({...config});
+                        const newConfig = JSON.parse(JSON.stringify(config));
+                        newConfig[group][id].value = e.target.value;
+                        setConfig(newConfig);
                     }} id={id} className="bg-dropdown outline-none w-32 px-2 rounded-md" name="logo">
                         <option value="old">Old</option>
                         <option value="new">Updated</option>
